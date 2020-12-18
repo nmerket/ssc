@@ -1,0 +1,20 @@
+name: Mac Build
+
+on: [push]
+
+jobs:
+  build_ssc:
+    runs-on: macos-10.15
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create Build Directory
+        run: cmake -E make_directory ${{runner.workspace}}/ssc/build
+
+      - name: Configure cmake
+        run: cmake -DSAMAPI_EXPORT=OFF -DSAM_SKIP_TESTS=ON -DSAM_SKIP_TOOLS=ON
+
+      - name: Build SSC
+        working-directory: ${{runner.workspace}}/ssc/build
+        run: cmake --build . --target ssc -j 2
