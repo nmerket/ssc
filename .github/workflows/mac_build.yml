@@ -8,11 +8,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        run: mkdir ${{runner.workspace}}/build
 
       - name: Configure cmake
-        working-directory: ${{runner.workspace}}/ssc/build
-        run: cmake -DSAMAPI_EXPORT=OFF -DSAM_SKIP_TESTS=ON -DSAM_SKIP_TOOLS=ON ..
+        working-directory: ${{runner.workspace}}/build
+        run: cmake -DSAMAPI_EXPORT=OFF -DSAM_SKIP_TESTS=ON -DSAM_SKIP_TOOLS=ON ${{runner.workspace}}
 
       - name: Build SSC
-        working-directory: ${{runner.workspace}}/ssc/build
+        working-directory: ${{runner.workspace}}/build
         run: cmake --build . --target ssc -j 2
