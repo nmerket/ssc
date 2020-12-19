@@ -9,12 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Create Build Directory
-        run: cmake -E make_directory ${{runner.workspace}}/ssc/build
-
       - name: Configure cmake
         working-directory: ${{runner.workspace}}/ssc/build
-        run: cmake -DSAMAPI_EXPORT=OFF -DSAM_SKIP_TESTS=ON -DSAM_SKIP_TOOLS=ON
+        run: cmake -DSAMAPI_EXPORT=OFF -DSAM_SKIP_TESTS=ON -DSAM_SKIP_TOOLS=ON ..
 
       - name: Build SSC
         working-directory: ${{runner.workspace}}/ssc/build
