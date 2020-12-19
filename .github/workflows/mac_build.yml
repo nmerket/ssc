@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        run: mkdir ${{runner.workspace}}/build
+      - run: mkdir ${{runner.workspace}}/build
 
       - name: Configure cmake
         working-directory: ${{runner.workspace}}/build
