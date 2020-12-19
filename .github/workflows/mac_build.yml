@@ -9,12 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: pwd && ls -alh
-      - run: mkdir ${{runner.workspace}}/ssc/build
+      - run: mkdir build && pwd && ls -alh
 
       - name: Configure cmake
         working-directory: ${{runner.workspace}}/ssc/build
-        run: cmake -DSAMAPI_EXPORT=OFF -DSAM_SKIP_TESTS=ON -DSAM_SKIP_TOOLS=ON ${{runner.workspace}}
+        run: cmake -DSAMAPI_EXPORT=OFF -DSAM_SKIP_TESTS=ON -DSAM_SKIP_TOOLS=ON ${{runner.workspace}}/ssc
 
       - name: Build SSC
         working-directory: ${{runner.workspace}}/ssc/build
